@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ifnews/news_detail_header.dart';
+// import 'package:ifnews/news_detail_header.dart';
+import 'package:ifnews/home_page.dart';
 
 void main() => runApp(Home());
 
@@ -16,23 +17,3 @@ class Home extends StatelessWidget {
   }
 }
 
-class HomePage extends StatefulWidget {
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Material(
-        // color: Colors.white54,
-          child: Container(
-              child:
-                  NewsDetailHeader(),
-    )));
-  }
-
-  
-}
