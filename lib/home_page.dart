@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-
+import 'package:animator/animator.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -8,6 +8,17 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  // AnimationController _animationController;
+
+  // @override
+  // void initState(){
+  //   super.initState();
+  //   _animationController = AnimationController(
+  //     duration: const Duration(seconds: 1),
+  //     vsync: this,
+  //   )..repeat();
+  // }
+
   Map<String, dynamic> _dados = {
     'dados': {
       'categorias': {
@@ -83,107 +94,153 @@ class _HomePageState extends State<HomePage> {
     }
   };
 
+  // @override
+  // void initState(){
+  //   super.initState();
+  //   _periodicHeight();
+  // }
+
+  // var _bottom = true;
+
+  // _periodicHeight(){
+  //   const duration = Duration(milliseconds: 500);
+  //   Timer.periodic(duration, (Timer t) => _changeHeight());
+  // }
+
+  // _changeHeight(){
+  //   _bottom = !_bottom;
+  //   return _bottom;
+  // }
+
   @override
   Widget build(BuildContext context) {
     MediaQueryData queryData = MediaQuery.of(context);
-    return SafeArea(
-        child: Material(
-            // color: Colors.white,
-            child: _buildListView(
-                _dados['dados']['categorias']['noticias'], queryData.size)));
+    return Material(
+        // color: Colors.white,
+        child: _buildListView(
+            _dados['dados']['categorias']['noticias'], queryData.size));
   }
 
   Widget _fixedWidget(Map<String, dynamic> data, var size) {
-    return ClipPath(
-        clipper: ArcClipper(),
-        child: Stack(
-          children: <Widget>[
-            Image.network(
-              data['image'],
-              fit: BoxFit.cover,
-              height: size.height - 30,
-            ),
-            Positioned(
-              bottom: 70,
-              child: Stack(
-                  children: <Widget>[
-                    // Stroked text as border.
-                    SizedBox(
-                      width: size.width,
-                      child: Text(
-                        data['descricao'],
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 20,
-                          foreground: Paint()
-                            ..style = PaintingStyle.stroke
-                            ..strokeWidth = 3
-                            ..color = Colors.black,
-                        ),
-                      ),
-                    ),
-
-                    // Solid text as fill.
-                    SizedBox(
-                      width: size.width,
-                      child: Text(
-                        data['descricao'],
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.grey[300],
-                        ),
-                      ),
-                    )
-                  ],
+    return Stack(
+      children: <Widget>[
+        Image.network(
+          data['image'],
+          fit: BoxFit.cover,
+          height: size.height - 30,
+        ),
+        Positioned(
+          bottom: 70,
+          child: Stack(
+            children: <Widget>[
+              // Stroked text as border.
+              SizedBox(
+                width: size.width,
+                child: Text(
+                  data['descricao'],
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 20,
+                    foreground: Paint()
+                      ..style = PaintingStyle.stroke
+                      ..strokeWidth = 3
+                      ..color = Colors.black,
+                  ),
                 ),
-            ),
-            Positioned(
-                bottom: 150,
-                // heightFactor: 12,
-                child: Stack(
-                  children: <Widget>[
-                    // Stroked text as border.
-                    SizedBox(
-                      width: size.width,
-                      child: Text(
-                        data['titulo'],
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 30,
-                          foreground: Paint()
-                            ..style = PaintingStyle.stroke
-                            ..strokeWidth = 3
-                            ..color = Colors.black,
-                        ),
-                      ),
+              ),
+
+              // Solid text as fill.
+              SizedBox(
+                width: size.width,
+                child: Text(
+                  data['descricao'],
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.grey[300],
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
+        Positioned(
+            bottom: 150,
+            // heightFactor: 12,
+            child: Stack(
+              children: <Widget>[
+                // Stroked text as border.
+                SizedBox(
+                  width: size.width,
+                  child: Text(
+                    data['titulo'],
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 30,
+                      foreground: Paint()
+                        ..style = PaintingStyle.stroke
+                        ..strokeWidth = 3
+                        ..color = Colors.black,
                     ),
+                  ),
+                ),
 
-                    // Solid text as fill.
-                    SizedBox(
-                      width: size.width,
-                      child: Text(
-                        data['titulo'],
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 30,
-                          color: Colors.grey[300],
-                        ),
-                      ),
-                    )
-                  ],
-                )),
-
-          ],
-        ));
+                // Solid text as fill.
+                SizedBox(
+                  width: size.width,
+                  child: Text(
+                    data['titulo'],
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 30,
+                      color: Colors.grey[300],
+                    ),
+                  ),
+                )
+              ],
+            )),
+      ],
+    );
   }
 
-  Widget get_fixedWidget(Map<String, dynamic> data, var size){
+  Widget get_fixedWidget(Map<String, dynamic> data, var size) {
+    // final animation = Tween(begin: 20.0, end: 25.0).animate(_animationController);
+    // var _bottom = 20.0;
     return CarouselSlider(
       height: size.height - 30,
       viewportFraction: 1.0,
       items: <Widget>[
-        _fixedWidget(data, size),
+        Stack(
+          children: <Widget>[
+            _fixedWidget(data, size),
+            Animator(
+              tween: Tween<double>(begin: 15, end: 30),
+              cycles: 0,
+              duration: Duration(milliseconds: 300),
+              builder: (anim) =>
+                Positioned(
+                  bottom: anim.value,
+                  width: size.width,
+                  child: Icon(
+                    Icons.arrow_drop_up,
+                    size: 60.0,
+                    color: Colors.white,
+                  ),
+                ),
+              
+            ),
+            // AnimatedPositioned(
+            //   duration: Duration(seconds: 1),
+            //   width: size.width,
+            //   bottom: _bottom ? 20.0 : 25.0,
+            // child: Icon(
+            //   Icons.arrow_drop_up,
+            //   size: 70.0,
+            //   color: Colors.white,
+            // ),
+            // ),
+          ],
+        ),
       ],
     );
   }
@@ -212,18 +269,18 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class ArcClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    Path path = Path();
-    path.lineTo(0, size.height);
-    path.quadraticBezierTo(
-        size.width / 2, size.height - 100, size.width, size.height);
-    path.lineTo(size.width, 0);
+// class ArcClipper extends CustomClipper<Path> {
+//   @override
+//   Path getClip(Size size) {
+//     Path path = Path();
+//     path.lineTo(0, size.height);
+//     path.quadraticBezierTo(
+//         size.width / 2, size.height - 100, size.width, size.height);
+//     path.lineTo(size.width, 0);
 
-    return path;
-  }
+//     return path;
+//   }
 
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
-}
+//   @override
+//   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
+// }
