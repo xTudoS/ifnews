@@ -94,13 +94,70 @@ class _HomePageState extends State<HomePage> {
     }
   };
 
+  double _sizedUpdate = 1;
+
+  double _sizedFontDescription = 25;
+  double _sizedFontTitle = 35;
+  double _sizedFontTitleListTile = 20;
+  double _sizedFontDescriptionListTile = 15;
+
   @override
   Widget build(BuildContext context) {
     MediaQueryData queryData = MediaQuery.of(context);
-    return Material(
-        // color: Colors.white,
-        child: _buildListView(
-            _dados['dados']['categorias']['noticias'], queryData.size));
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("IF News"),
+          centerTitle: true,
+        ),
+        body: _buildListView(
+            _dados['dados']['categorias']['noticias'], queryData.size),
+        drawer: SizedBox(
+          width: queryData.size.width * 0.8,
+          child: Container(
+            padding: EdgeInsets.only(top: 15.0),
+            color: Colors.white,
+            child: SafeArea(
+              child: Stack(
+                children: <Widget>[
+                  Column(
+                    children: <Widget>[
+                      Center(
+                        child: Text(
+                          'Ajustar tamanho da fonte',
+                          style: TextStyle(
+                            fontSize: _sizedFontTitleListTile,
+                          ),
+                        ),
+                      ),
+                      Slider(
+                        activeColor: Colors.black,
+                        value: _sizedUpdate,
+                        min: 0.5,
+                        max: 1.5,
+                        onChanged: (newRating) {
+                          setState(() {
+                            _sizedUpdate = newRating;
+                            _sizedFontDescriptionListTile = 10 * _sizedUpdate;
+                            _sizedFontDescription = 20 * _sizedUpdate;
+                            _sizedFontTitle = 30 * _sizedUpdate;
+                            _sizedFontTitleListTile = 15 * _sizedUpdate;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                  Positioned(
+                    width: queryData.size.width * 0.8,
+                    bottom: 20.0,
+                    child: Center(
+                      child: Text('IF News - Agregador de notícias do IFPB'),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ));
   }
 
   Widget _fixedWidget(Map<String, dynamic> data, var size) {
@@ -112,7 +169,7 @@ class _HomePageState extends State<HomePage> {
           height: size.height - 30,
         ),
         Positioned(
-          bottom: 70,
+          bottom: 130,
           child: Stack(
             children: <Widget>[
               // Stroked text as border.
@@ -122,7 +179,7 @@ class _HomePageState extends State<HomePage> {
                   data['descricao'],
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 25,
+                    fontSize: _sizedFontDescription,
                     foreground: Paint()
                       ..style = PaintingStyle.stroke
                       ..strokeWidth = 3
@@ -138,7 +195,7 @@ class _HomePageState extends State<HomePage> {
                   data['descricao'],
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 25,
+                    fontSize: _sizedFontDescription,
                     color: Colors.grey[300],
                   ),
                 ),
@@ -147,7 +204,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         Positioned(
-            bottom: 150,
+            bottom: 210,
             // heightFactor: 12,
             child: Stack(
               children: <Widget>[
@@ -158,7 +215,7 @@ class _HomePageState extends State<HomePage> {
                     data['titulo'],
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 35,
+                      fontSize: _sizedFontTitle,
                       foreground: Paint()
                         ..style = PaintingStyle.stroke
                         ..strokeWidth = 3
@@ -174,7 +231,7 @@ class _HomePageState extends State<HomePage> {
                     data['titulo'],
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 35,
+                      fontSize: _sizedFontTitle,
                       color: Colors.grey[300],
                     ),
                   ),
@@ -194,9 +251,9 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             _fixedWidget(data, size),
             Animator(
-              tween: Tween<double>(begin: 10, end: 20),
+              tween: Tween<double>(begin: 80, end: 100),
               cycles: 0,
-              duration: Duration(milliseconds: 300),
+              duration: Duration(milliseconds: 200),
               builder: (anim) => Positioned(
                 bottom: anim.value,
                 width: size.width,
@@ -225,11 +282,11 @@ class _HomePageState extends State<HomePage> {
             leading: Image.network(data['image']),
             title: Text(
               data['titulo'],
-              style: TextStyle(fontSize: 20.0),
+              style: TextStyle(fontSize: _sizedFontTitleListTile),
             ),
             subtitle: Text(
               data['data_publicacao'],
-              style: TextStyle(fontSize: 15.0),
+              style: TextStyle(fontSize: _sizedFontDescriptionListTile),
             ),
             dense: true,
             trailing: Icon(Icons.arrow_right),
@@ -245,11 +302,11 @@ class _HomePageState extends State<HomePage> {
           leading: Image.network(data['image']),
           title: Text(
             data['titulo'],
-            style: TextStyle(fontSize: 20.0),
+            style: TextStyle(fontSize: _sizedFontTitleListTile),
           ),
           subtitle: Text(
             data['data_publicacao'],
-            style: TextStyle(fontSize: 15.0),
+            style: TextStyle(fontSize: _sizedFontDescriptionListTile),
           ),
           dense: true,
           trailing: Icon(Icons.arrow_right),
@@ -260,13 +317,12 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildListView(List dados, var size) {
-
     return Stack(
       children: <Widget>[
         get_fixedWidget(dados[1], size),
         DraggableScrollableSheet(
-          initialChildSize: 0.13,
-          minChildSize: 0.13,
+          initialChildSize: 0.1,
+          minChildSize: 0.1,
           maxChildSize: 1.0,
           builder: (context, scrollController) {
             return ListView.builder(
