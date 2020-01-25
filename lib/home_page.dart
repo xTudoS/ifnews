@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:animator/animator.dart';
+import 'package:share/share.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -8,17 +10,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // AnimationController _animationController;
-
-  // @override
-  // void initState(){
-  //   super.initState();
-  //   _animationController = AnimationController(
-  //     duration: const Duration(seconds: 1),
-  //     vsync: this,
-  //   )..repeat();
-  // }
-
+  
   Map<String, dynamic> _dados = {
     'dados': {
       'categorias': {
@@ -204,7 +196,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         Positioned(
-            bottom: 210,
+            bottom: 230,
             // heightFactor: 12,
             child: Stack(
               children: <Widget>[
@@ -242,7 +234,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget get_fixedWidget(Map<String, dynamic> data, var size) {
+  Widget getFixedWidget(Map<String, dynamic> data, var size) {
     return CarouselSlider(
       height: size.height - 30,
       viewportFraction: 1.0,
@@ -251,7 +243,7 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             _fixedWidget(data, size),
             Animator(
-              tween: Tween<double>(begin: 80, end: 100),
+              tween: Tween<double>(begin: 70, end: 90),
               cycles: 0,
               duration: Duration(milliseconds: 200),
               builder: (anim) => Positioned(
@@ -275,8 +267,18 @@ class _HomePageState extends State<HomePage> {
       return ClipRRect(
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(30), topRight: Radius.circular(30)),
-        child: Container(
-          padding: EdgeInsets.all(0),
+        child: RaisedButton(
+          onPressed: () async {
+            if (await canLaunch(data['url'])) {
+              await launch(data['url']);
+            } else {
+              throw "Não foi possível abrir o link ${data['url']}";
+            }
+          },
+          onLongPress: () {
+            Share.share("${data['titulo']} - ${data['url']} - IF News",
+                subject: data['titulo']);
+          },
           color: Colors.white,
           child: ListTile(
             leading: Image.network(data['image']),
@@ -290,13 +292,22 @@ class _HomePageState extends State<HomePage> {
             ),
             dense: true,
             trailing: Icon(Icons.arrow_right),
-            onTap: () {},
           ),
         ),
       );
     } else {
-      return Container(
-        padding: EdgeInsets.all(0),
+      return RaisedButton(
+        onPressed: () async {
+          if (await canLaunch(data['url'])) {
+            await launch(data['url']);
+          } else {
+            throw "Não foi possível abrir o link ${data['url']}";
+          }
+        },
+        onLongPress: () {
+          Share.share("${data['titulo']} - ${data['url']} - IF News",
+              subject: data['titulo']);
+        },
         color: Colors.white,
         child: ListTile(
           leading: Image.network(data['image']),
@@ -310,7 +321,6 @@ class _HomePageState extends State<HomePage> {
           ),
           dense: true,
           trailing: Icon(Icons.arrow_right),
-          onTap: () {},
         ),
       );
     }
@@ -319,13 +329,14 @@ class _HomePageState extends State<HomePage> {
   Widget _buildListView(List dados, var size) {
     return Stack(
       children: <Widget>[
-        get_fixedWidget(dados[1], size),
+        getFixedWidget(dados[1], size),
         DraggableScrollableSheet(
           initialChildSize: 0.1,
           minChildSize: 0.1,
           maxChildSize: 1.0,
           builder: (context, scrollController) {
             return ListView.builder(
+              padding: EdgeInsets.only(top: 10.0),
               controller: scrollController,
               itemCount: 30,
               itemBuilder: (context, index) {
