@@ -140,7 +140,7 @@ class _HomePageState extends State<HomePage> {
                   data['descricao'],
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 25,
                     foreground: Paint()
                       ..style = PaintingStyle.stroke
                       ..strokeWidth = 3
@@ -156,7 +156,7 @@ class _HomePageState extends State<HomePage> {
                   data['descricao'],
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 25,
                     color: Colors.grey[300],
                   ),
                 ),
@@ -176,7 +176,7 @@ class _HomePageState extends State<HomePage> {
                     data['titulo'],
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 30,
+                      fontSize: 35,
                       foreground: Paint()
                         ..style = PaintingStyle.stroke
                         ..strokeWidth = 3
@@ -192,7 +192,7 @@ class _HomePageState extends State<HomePage> {
                     data['titulo'],
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 30,
+                      fontSize: 35,
                       color: Colors.grey[300],
                     ),
                   ),
@@ -204,8 +204,6 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget get_fixedWidget(Map<String, dynamic> data, var size) {
-    // final animation = Tween(begin: 20.0, end: 25.0).animate(_animationController);
-    // var _bottom = 20.0;
     return CarouselSlider(
       height: size.height - 30,
       viewportFraction: 1.0,
@@ -214,73 +212,91 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             _fixedWidget(data, size),
             Animator(
-              tween: Tween<double>(begin: 15, end: 30),
+              tween: Tween<double>(begin: 10, end: 20),
               cycles: 0,
               duration: Duration(milliseconds: 300),
-              builder: (anim) =>
-                Positioned(
-                  bottom: anim.value,
-                  width: size.width,
-                  child: Icon(
-                    Icons.arrow_drop_up,
-                    size: 60.0,
-                    color: Colors.white,
-                  ),
+              builder: (anim) => Positioned(
+                bottom: anim.value,
+                width: size.width,
+                child: Icon(
+                  Icons.arrow_drop_up,
+                  size: 60.0,
+                  color: Colors.white,
                 ),
-              
+              ),
             ),
-            // AnimatedPositioned(
-            //   duration: Duration(seconds: 1),
-            //   width: size.width,
-            //   bottom: _bottom ? 20.0 : 25.0,
-            // child: Icon(
-            //   Icons.arrow_drop_up,
-            //   size: 70.0,
-            //   color: Colors.white,
-            // ),
-            // ),
           ],
         ),
       ],
     );
   }
 
-  Widget _newsWidget(Map<String, dynamic> data) {
-    return ListTile(
-      leading: Image.network(data['image']),
-      title: Text(data['titulo']),
-      subtitle: Text(data['data_publicacao']),
-      dense: true,
-      trailing: Icon(Icons.arrow_right),
-      onTap: () {},
-    );
+  Widget _newsWidget(Map<String, dynamic> data, int index) {
+    if (index == 0) {
+      return ClipRRect(
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+        child: Container(
+          padding: EdgeInsets.all(0),
+          color: Colors.white,
+          child: ListTile(
+            leading: Image.network(data['image']),
+            title: Text(
+              data['titulo'],
+              style: TextStyle(fontSize: 20.0),
+            ),
+            subtitle: Text(
+              data['data_publicacao'],
+              style: TextStyle(fontSize: 15.0),
+            ),
+            dense: true,
+            trailing: Icon(Icons.arrow_right),
+            onTap: () {},
+          ),
+        ),
+      );
+    } else {
+      return Container(
+        padding: EdgeInsets.all(0),
+        color: Colors.white,
+        child: ListTile(
+          leading: Image.network(data['image']),
+          title: Text(
+            data['titulo'],
+            style: TextStyle(fontSize: 20.0),
+          ),
+          subtitle: Text(
+            data['data_publicacao'],
+            style: TextStyle(fontSize: 15.0),
+          ),
+          dense: true,
+          trailing: Icon(Icons.arrow_right),
+          onTap: () {},
+        ),
+      );
+    }
   }
 
   Widget _buildListView(List dados, var size) {
-    return ListView.builder(
-        itemCount: 30,
-        itemBuilder: (context, index) {
-          if (index == 0) {
-            return get_fixedWidget(dados[1], size);
-          } else {
-            return _newsWidget(dados[1]);
-          }
-        });
+
+    return Stack(
+      children: <Widget>[
+        get_fixedWidget(dados[1], size),
+        DraggableScrollableSheet(
+          initialChildSize: 0.13,
+          minChildSize: 0.13,
+          maxChildSize: 1.0,
+          builder: (context, scrollController) {
+            return ListView.builder(
+              controller: scrollController,
+              itemCount: 30,
+              itemBuilder: (context, index) {
+                return _newsWidget(dados[1], index);
+              },
+            );
+          },
+        ),
+      ],
+    );
   }
 }
-
-// class ArcClipper extends CustomClipper<Path> {
-//   @override
-//   Path getClip(Size size) {
-//     Path path = Path();
-//     path.lineTo(0, size.height);
-//     path.quadraticBezierTo(
-//         size.width / 2, size.height - 100, size.width, size.height);
-//     path.lineTo(size.width, 0);
-
-//     return path;
-//   }
-
-//   @override
-//   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
-// }
