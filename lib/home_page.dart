@@ -94,24 +94,6 @@ class _HomePageState extends State<HomePage> {
     }
   };
 
-  // @override
-  // void initState(){
-  //   super.initState();
-  //   _periodicHeight();
-  // }
-
-  // var _bottom = true;
-
-  // _periodicHeight(){
-  //   const duration = Duration(milliseconds: 500);
-  //   Timer.periodic(duration, (Timer t) => _changeHeight());
-  // }
-
-  // _changeHeight(){
-  //   _bottom = !_bottom;
-  //   return _bottom;
-  // }
-
   @override
   Widget build(BuildContext context) {
     MediaQueryData queryData = MediaQuery.of(context);
