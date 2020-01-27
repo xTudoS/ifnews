@@ -5,6 +5,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:animator/animator.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:http/http.dart' as http;
+
 
 import 'package:ifnews/dados.dart';
 import 'package:ifnews/var_globais.dart';
@@ -16,6 +18,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
   @override
   Widget build(BuildContext context) {
     MediaQueryData queryData = MediaQuery.of(context);
@@ -24,6 +27,20 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text('IF News'),
         centerTitle: true,
+      ),
+      body: FutureBuilder(
+        future: http.get('http://www.ifpb.edu.br/cajazeiras'),
+        builder: (context, snapshot){
+          if (snapshot.connectionState == ConnectionState.done){
+            if (snapshot.hasError){
+              return Container(child: Text('Error'),);
+            } else {
+              return Container(child: Text('Success'),);
+            }
+          } else {
+            return Center(child: CircularProgressIndicator(),);
+          }
+        },
       ),
       drawer: SizedBox(
         width: queryData.size.width * 0.7,
