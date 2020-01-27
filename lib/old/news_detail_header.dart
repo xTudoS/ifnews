@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ifnews/arc_banner_image.dart';
+import 'package:ifnews/old/arc_banner_image.dart';
 
 class NewsDetailHeader extends StatelessWidget {
   Map<String, dynamic> _dados = {
