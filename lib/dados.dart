@@ -1,4 +1,4 @@
-Map<String, dynamic> _dados = {
+Map<String, dynamic> dados = {
     'dados': {
       'categorias': {
         'noticias': [
