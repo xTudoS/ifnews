@@ -51,7 +51,7 @@ class _ConfigFontPageState extends State<ConfigFontPage> {
                     child: Slider(
                       activeColor: Colors.black,
                       value: rating,
-                      min: 10,
+                      min: 5,
                       max: 15,
                       onChanged: (newRating) {
                         setState(() {

@@ -16,11 +16,11 @@ List postsInsta = [];
 
 String date = "$dia/$mes/$ano";
 
-double rating = 12;
-double fonteTitulo = 27;
-double fonteDescricao = 22;
-double fonteData = 12;
-double tamanhoIcon = 102;
+double rating = 10;
+double fonteTitulo = 25;
+double fonteDescricao = 20;
+double fonteData = 10;
+double tamanhoIcon = 100;
 
 int numLinhasDescricao = 2;
 int numPosts = 10;
