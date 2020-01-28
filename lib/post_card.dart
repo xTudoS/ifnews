@@ -48,14 +48,18 @@ class _PostCardState extends State<PostCard> {
 
     return Row(
       children: <Widget>[
-        imgNull
-            ? FittedBox(
-                child: Icon(
-                  Icons.crop_original,
-                  size: tamanhoIcon,
-                ),
-              )
-            : Image.network(img, width: tamanhoIcon, fit: BoxFit.cover),
+        Padding(
+          padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
+          child: imgNull
+              ? FittedBox(
+                  child: Icon(
+                    Icons.crop_original,
+                    size: tamanhoIcon,
+                  ),
+                )
+              : Image.network(img,
+                  width: tamanhoIcon, height: tamanhoIcon, fit: BoxFit.cover),
+        ),
         Padding(
           padding: EdgeInsets.only(left: 10),
           child: SizedBox(
