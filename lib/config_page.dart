@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:ifnews/var_globais.dart';
+import 'package:ifnews/post_card.dart';
 
 
 class ConfigFontPageRouter extends CupertinoPageRoute {
@@ -33,7 +34,7 @@ class _ConfigFontPageState extends State<ConfigFontPage> {
           centerTitle: true,
         ),
         body: Container(
-          padding: EdgeInsets.all(10.0),
+          padding: EdgeInsets.only(top: 10.0),
           child: Column(
             children: <Widget>[
               Text(
@@ -50,11 +51,15 @@ class _ConfigFontPageState extends State<ConfigFontPage> {
                     child: Slider(
                       activeColor: Colors.black,
                       value: rating,
-                      min: 12,
-                      max: 30,
+                      min: 10,
+                      max: 15,
                       onChanged: (newRating) {
                         setState(() {
                           rating = newRating;
+                          tamanhoIcon = 90 + rating;
+                          fonteTitulo = 15 + rating;
+                          fonteDescricao = 10 + rating;
+                          fonteData = rating;
                         });
                       },
                     ),
@@ -65,9 +70,16 @@ class _ConfigFontPageState extends State<ConfigFontPage> {
                   )
                 ],
               ),
+              PostCard(
+                'Título',
+                date,
+                textoDescricaoLoremIpisum,
+                '',
+                false,
+                true
+              )
             ],
           ),
         ));
   }
 }
-

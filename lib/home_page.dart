@@ -7,10 +7,11 @@ import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
 
-
-import 'package:ifnews/dados.dart';
+// import 'package:ifnews/dados.dart';
 import 'package:ifnews/var_globais.dart';
 import 'package:ifnews/config_page.dart';
+import 'package:ifnews/scraping/instagram.dart';
+import 'package:ifnews/post_card.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -18,6 +19,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   intagramScrap();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -29,16 +36,41 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
       ),
       body: FutureBuilder(
-        future: http.get('http://www.ifpb.edu.br/cajazeiras'),
-        builder: (context, snapshot){
-          if (snapshot.connectionState == ConnectionState.done){
-            if (snapshot.hasError){
-              return Container(child: Text('Error'),);
+        future: intagramScrap(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            if (snapshot.hasError) {
+              return Container(
+                child: Text('Error'),
+              );
             } else {
-              return Container(child: Text('Success'),);
+              return ListView.builder(
+                itemCount: numPosts,
+                itemBuilder: (context, index) {
+                  return Card(
+                    elevation: 10,
+                    child: RaisedButton(
+                      color: Colors.white,
+                      onPressed: (){},
+                      child: PostCard(
+                        postsInsta[index]['title'],
+                        postsInsta[index]['date_publish'],
+                        postsInsta[index]['description'],
+                        postsInsta[index]['img'],
+                        postsInsta[index]['date_publish'] == null,
+                        postsInsta[index]['img'] == null,
+
+
+                      ),
+                    )
+                  );
+                },
+              );
             }
           } else {
-            return Center(child: CircularProgressIndicator(),);
+            return Center(
+              child: CircularProgressIndicator(),
+            );
           }
         },
       ),
@@ -63,4 +95,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
