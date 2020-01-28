@@ -6,13 +6,17 @@ import 'dart:io';
 
 Future<http.Response> intagramScrap() async {
   var url = 'https://www.instagram.com/ifpb.oficial/?__a=1';
-  var response = await http.get(url);
+  var h = {
+    'Referer': 'https://instagram.com'
+  };
+  var response = await http.get(url, headers: h);
+
   Map<String, dynamic> insta = json.decode(response.body);
   
   var postsInstaAPI = insta['graphql']['user']['edge_owner_to_timeline_media']['edges'];
   for (int i = 0; i < numPosts; i++){
     var urlPost = 'https://www.instagram.com/p/${postsInstaAPI[i]["node"]["shortcode"]}?__a=1';
-    var response = await http.get(urlPost);
+    var response = await http.get(urlPost, headers: h);
     Map<String, dynamic> instaPost = json.decode(response.body);
 
     var instaPostsAPI = instaPost['graphql']['shortcode_media'];
