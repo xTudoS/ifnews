@@ -10,11 +10,21 @@ main() async {
   // print('Response body: ${response.body}');
   var document = parse(response.body);
   var fixed = document.getElementsByClassName('collection-item');
-  for (var i = 0;i<fixed.length;i++){
-    print(fixed[i].children);
+  for (var link in fixed){
+    var doc = link.children;
+    var head = parse(doc[0].outerHtml);
+    var img = parse(doc[2].outerHtml);
+    
+    var title = head.children[0].querySelector('a');
+    var urlImg = img.children[0].querySelector('img');
+    var d = title.attributes;
+    d['img'] = (urlImg.attributes['src']);
+
+    // print(doc.attributes);
+    // var doc2 = parse(doc.children[0].outerHtml);
+    // print(doc2.attributes.values);
+    print(d);
     break;
   }
-
-  // document.
   
 }
