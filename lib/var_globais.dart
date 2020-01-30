@@ -13,6 +13,9 @@ String int2str(int num){
 }
 
 List postsInsta = [];
+List postsPortalIFPB = [];
+
+List carouselSliderPostsDestaque = [];
 
 String date = "$dia/$mes/$ano";
 
@@ -23,6 +26,7 @@ double fonteData = 10;
 double tamanhoIcon = 100;
 
 int numLinhasDescricao = 2;
-int numPosts = 10;
+int numPostsInsta = 10;
+int numPostsPortalIFPB = 1;
 
 String textoDescricaoLoremIpisum = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ac augue vel justo consequat accumsan et ut mauris. Donec a bibendum diam, non finibus est.';

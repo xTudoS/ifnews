@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:animator/animator.dart';
-import 'package:share/share.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:http/http.dart' as http;
+// import 'package:carousel_slider/carousel_slider.dart';
+// import 'package:animator/animator.dart';
+// import 'package:share/share.dart';
+// import 'package:url_launcher/url_launcher.dart';
+// import 'package:http/http.dart' as http;
 
 // import 'package:ifnews/dados.dart';
 import 'package:ifnews/var_globais.dart';
 import 'package:ifnews/config_page.dart';
 import 'package:ifnews/scraping/instagram.dart';
-import 'package:ifnews/post_card.dart';
+import 'package:ifnews/scraping/ifpb_cajazeiras.dart';
+import 'package:ifnews/carousel_slider/carousel_slider_posts.dart';
+// import 'package:ifnews/post_card.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -19,12 +21,17 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   intagramScrap();
-  // }
+
+  Future<String> getDados() async {
+    postsInsta = [];
+    postsPortalIFPB = [];
+
+    await intagramScrap();
+    await portalIFPBScrap();
+
+    return 'Ok';
+  }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +43,7 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
       ),
       body: FutureBuilder(
-        future: intagramScrap(),
+        future: getDados(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             if (snapshot.hasError) {
@@ -44,28 +51,7 @@ class _HomePageState extends State<HomePage> {
                 child: Text('Error'),
               );
             } else {
-              return ListView.builder(
-                itemCount: numPosts,
-                itemBuilder: (context, index) {
-                  return Card(
-                    elevation: 10,
-                    child: RaisedButton(
-                      color: Colors.white,
-                      onPressed: (){},
-                      child: PostCard(
-                        postsInsta[index]['title'],
-                        postsInsta[index]['date_publish'],
-                        postsInsta[index]['description'],
-                        postsInsta[index]['img'],
-                        postsInsta[index]['date_publish'] == null,
-                        postsInsta[index]['img'] == null,
-
-
-                      ),
-                    )
-                  );
-                },
-              );
+              return CarouselSliderPosts();
             }
           } else {
             return Center(
