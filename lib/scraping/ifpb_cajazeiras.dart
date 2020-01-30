@@ -7,8 +7,8 @@ import 'package:ifnews/var_globais.dart';
 Future<http.Response> portalIFPBScrap() async {
   var url = 'http://www.ifpb.edu.br/cajazeiras';
   var response = await http.get(url);
-  print('Hello World');
-  print("Response status: ${response.statusCode}");
+  // print('Hello World');
+  // print("Response status: ${response.statusCode}");
   // print('Response body: ${response.body}');
   var document = parse(response.body);
   var fixed = document.getElementsByClassName('collection-item');
