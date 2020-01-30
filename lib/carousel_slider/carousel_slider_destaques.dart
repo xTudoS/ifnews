@@ -1,8 +1,9 @@
+// import 'package:carousel_slider/carousel_slider.dart';
 // import 'package:flutter/material.dart';
 // import 'package:ifnews/var_globais.dart';
-// import 'package:carousel_slider/carousel_slider.dart';
-// import 'package:share/share.dart';
-// import 'package:url_launcher/url_launcher.dart';
+// // import 'package:carousel_slider/carousel_slider.dart';
+// // import 'package:share/share.dart';
+// // import 'package:url_launcher/url_launcher.dart';
 
 // class CarouselSliderDestaque extends StatefulWidget {
 //   @override
@@ -14,10 +15,8 @@
 //   Widget build(BuildContext context) {
 //     MediaQueryData queryData = MediaQuery.of(context);
 
-//     return Image.network(
-//       postsPortalIFPB[0]['img'],
-//       fit: BoxFit.cover,
-//       height: queryData.size.height,
+//     return CarouselSlider(
+
 //     );
 //   }
 

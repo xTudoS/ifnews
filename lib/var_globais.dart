@@ -29,4 +29,5 @@ int numLinhasDescricao = 2;
 int numPostsInsta = 10;
 int numPostsPortalIFPB = 4;
 
+String titleAppBar = 'IF News';
 String textoDescricaoLoremIpisum = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ac augue vel justo consequat accumsan et ut mauris. Donec a bibendum diam, non finibus est.';

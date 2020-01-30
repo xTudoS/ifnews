@@ -1,20 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-// import 'package:carousel_slider/carousel_slider.dart';
-// import 'package:animator/animator.dart';
-// import 'package:share/share.dart';
-// import 'package:url_launcher/url_launcher.dart';
-// import 'package:http/http.dart' as http;
-
-// import 'package:ifnews/dados.dart';
 import 'package:ifnews/var_globais.dart';
 import 'package:ifnews/config_page.dart';
 import 'package:ifnews/scraping/instagram.dart';
 import 'package:ifnews/scraping/ifpb_cajazeiras.dart';
 import 'package:ifnews/carousel_slider/carousel_slider_posts.dart';
-import 'package:ifnews/carousel_slider/carousel_slider_destaques.dart';
-// import 'package:ifnews/post_card.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -38,7 +29,7 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('IF News'),
+        title: Text(titleAppBar),
         centerTitle: true,
       ),
       body: FutureBuilder(
@@ -50,16 +41,7 @@ class _HomePageState extends State<HomePage> {
                 child: Text('Error'),
               );
             } else {
-              return Stack(
-                children: <Widget>[
-                  Image.network(
-                    postsPortalIFPB[0]['img'],
-                    fit: BoxFit.cover,
-                    height: queryData.size.height,
-                  ),
-                  CarouselSliderPosts(),
-                ],
-              );
+              return CarouselSliderPosts();
             }
           } else {
             return Center(
