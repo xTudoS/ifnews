@@ -28,10 +28,10 @@ Future<http.Response> portalIFPBScrap() async {
     d['url'] = title.attributes['href'];
     d['description'] = title.attributes['title'];
     d['date_publish'] = null;
-    d['title'] = 'Portal IFPB Cajazeiras';
+    // d['title'] = 'Portal IFPB Cajazeiras';
+    d['title'] = title.text.trim();
     d['img'] = (urlImg.attributes['src']);
 
-    
     postsPortalIFPB.add(d);
 
   }
