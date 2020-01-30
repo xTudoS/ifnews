@@ -13,6 +13,7 @@ import 'package:ifnews/config_page.dart';
 import 'package:ifnews/scraping/instagram.dart';
 import 'package:ifnews/scraping/ifpb_cajazeiras.dart';
 import 'package:ifnews/carousel_slider/carousel_slider_posts.dart';
+import 'package:ifnews/carousel_slider/carousel_slider_destaques.dart';
 // import 'package:ifnews/post_card.dart';
 
 class HomePage extends StatefulWidget {
@@ -21,7 +22,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   Future<String> getDados() async {
     postsInsta = [];
     postsPortalIFPB = [];
@@ -31,7 +31,6 @@ class _HomePageState extends State<HomePage> {
 
     return 'Ok';
   }
-  
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +50,16 @@ class _HomePageState extends State<HomePage> {
                 child: Text('Error'),
               );
             } else {
-              return CarouselSliderPosts();
+              return Stack(
+                children: <Widget>[
+                  Image.network(
+                    postsPortalIFPB[0]['img'],
+                    fit: BoxFit.cover,
+                    height: queryData.size.height,
+                  ),
+                  CarouselSliderPosts(),
+                ],
+              );
             }
           } else {
             return Center(

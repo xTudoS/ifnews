@@ -11,19 +11,11 @@ class CarouselSliderPosts extends StatefulWidget {
 }
 
 class _CarouselSliderPostsState extends State<CarouselSliderPosts> {
-  // List carouselSliderPosts = [];
-
-  // @override
-  // initState() {
-  //   super.initState();
-  //   carouselSliderPosts.add(postsInsta);
-  // }
-
   @override
   Widget build(BuildContext context) {
     MediaQueryData queryData = MediaQuery.of(context);
     return CarouselSlider(
-      height: queryData.size.height - 30,
+      height: queryData.size.height,
       viewportFraction: 1.0,
       items: <Widget>[
         buildListView(postsInsta),
@@ -33,34 +25,45 @@ class _CarouselSliderPostsState extends State<CarouselSliderPosts> {
   }
 
   Widget buildListView(var dados) {
-    return ListView.builder(
-      itemCount: dados.length,
-      itemBuilder: (context, index) {
-        return Card(
-            elevation: 10,
-            child: RaisedButton(
+    return DraggableScrollableSheet(
+      initialChildSize: 0.1,
+      minChildSize: 0.1,
+      maxChildSize: 1.0,
+      builder: (context, scrollController) {
+        return ListView.builder(
+          controller: scrollController,
+          itemCount: dados.length,
+          itemBuilder: (context, index) {
+            return Container(
               color: Colors.white,
-              onPressed: () async {
-                if (await canLaunch(dados[index]['url'])) {
-                  await launch(dados[index]['url']);
-                } else {
-                  throw "Não foi possível abrir o link ${dados[index]['url']}";
-                }
-              },
-              onLongPress: () {
-                Share.share(
-                    "${dados[index]['description']} - ${dados[index]['url']} - IF News",
-                    subject: dados[index]['title']);
-              },
-              child: PostCard(
-                dados[index]['title'],
-                dados[index]['date_publish'],
-                dados[index]['description'],
-                dados[index]['img'],
-                dados[index]['date_publish'] == null,
-                dados[index]['img'] == null,
-              ),
-            ));
+              child: Card(
+                  elevation: 10,
+                  child: RaisedButton(
+                    color: Colors.white,
+                    onPressed: () async {
+                      if (await canLaunch(dados[index]['url'])) {
+                        await launch(dados[index]['url']);
+                      } else {
+                        throw "Não foi possível abrir o link ${dados[index]['url']}";
+                      }
+                    },
+                    onLongPress: () {
+                      Share.share(
+                          "${dados[index]['description']} - ${dados[index]['url']} - IF News",
+                          subject: dados[index]['title']);
+                    },
+                    child: PostCard(
+                      dados[index]['title'],
+                      dados[index]['date_publish'],
+                      dados[index]['description'],
+                      dados[index]['img'],
+                      dados[index]['date_publish'] == null,
+                      dados[index]['img'] == null,
+                    ),
+                  )),
+            );
+          },
+        );
       },
     );
   }
