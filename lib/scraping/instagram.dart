@@ -14,7 +14,7 @@ Future<http.Response> intagramScrap() async {
   Map<String, dynamic> insta = json.decode(response.body);
   
   var postsInstaAPI = insta['graphql']['user']['edge_owner_to_timeline_media']['edges'];
-  for (int i = 0; i < numPosts; i++){
+  for (int i = 0; i < numPostsInsta; i++){
     var urlPost = 'https://www.instagram.com/p/${postsInstaAPI[i]["node"]["shortcode"]}?__a=1';
     var response = await http.get(urlPost, headers: h);
     Map<String, dynamic> instaPost = json.decode(response.body);
