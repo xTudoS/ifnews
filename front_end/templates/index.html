@@ -33,25 +33,9 @@
     <link href="../static/carousel.css" rel="stylesheet">
   </head>
   <body>
-    <div class="nav-scroller py-0 mb-0">
-      <nav class="nav d-flex justify-content"><!--content-end-->
-        <a class="p-3 text-muted" href="#">Notícias</a>
-        <a class="p-3 text-muted" href="#">Editais</a>
-        <a class="p-3 text-muted" href="#">PSCT</a>
-        <a class="p-3 text-muted" href="#">Outos</a>
-        <a class="p-3 text-muted" href="#">Outros</a>
-        <a class="p-3 text-muted" href="#">pi</a>
-        <a class="p-3 text-muted" href="#">Popo</a>
-        <!-- <a class="p-2 text-muted" href="#">fdc</a>
-        <a class="p-2 text-muted" href="#">Se</a>
-        <a class="p-2 text-muted" href="#">Health</a>
-        <a class="p-2 text-muted" href="#">Style</a>
-        <a class="p-2 text-muted" href="#">Travel</a> -->
-      </nav>
-    </div>
-
     <header>
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <nav class="navbar navbar-expand-md navbar-blue fixed-top bg-dark"><!--IFPB cajazeiras fica fixo enquanto usa scroll, pra tirar remove fixed-top-->
+    <!--navbar pode ser outras cores, assim como bg-->
     <a class="navbar-brand" href="#">iFPB Cajazeiras</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -99,9 +83,9 @@
         <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
         <div class="container">
           <div class="carousel-caption">
-            <h1>Another example headline.</h1>
-            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-            <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+            <h1>Outro exemplo de headline.</h1>
+            <p>Cdasdasdaaaaaaaaadasdasfas fasf asf asfasfasfafasfa.</p>
+            <p><a class="btn btn-lg btn-primary" href="#" role="button">Leia mais sobre</a></p>
           </div>
         </div>
       </div>
@@ -109,7 +93,7 @@
         <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
         <div class="container">
           <div class="carousel-caption text-right">
-            <h1>One more for good measure.</h1>
+            <h1>asdasdasda.</h1>
             <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
             <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
           </div>
@@ -126,34 +110,61 @@
     </a>
   </div>
 
+  <div  class="nav-scroller py-0 mb-0">
+    <!-- <nav class="nav d-flex justify-content">content-end -->
+    <nav class="navbar navbar-expand navbar-light fixed-botton" style="background-color: #e3f2fd;">
+      <!-- <a class="nav-item nav-link active" href="https://www.youtube.com/watch?v=iywaBOMvYLI">Notícias</a> -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Editais</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">PSCT</a>
+          <a class="dropdown-item" href="#">Enem</a>
+          <a class="dropdown-item" href="#">Algo mais aqui</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">pipi</a>
+        </div>
+        </li>
+        <li><nav class="navbar navbar-expand navbar-light fixed-botton" style="background-color: #e3f2fd;">
+          <a class="nav-item nav-link active" href="https://www.youtube.com/watch?v=iywaBOMvYLI">Notícias</a></li>
+        <!-- <a class="p-3 text-muted" href="#">PSCT</a>
+        <a class="p-3 text-muted" href="#">Outos</a>
+        <a class="p-3 text-muted" href="#">Outros</a>
+        <a class="p-3 text-muted" href="#">pi</a>
+        <a class="p-3 text-muted" href="#">Popo</a> -->
+      <!-- <li class="nav-item active">
+        <a class="nav-link" href="https://www.youtube.com/watch?v=iywaBOMvYLI">Home<span class="sr-only">(Página atual)</span></a></li> -->
+    </nav>
+  </div>
+
 
   <!-- Marketing messaging and featurettes
   ================================================== -->
   <!-- Wrap the rest of the page in another container to center all the content. -->
 
-  <div class="container marketing">
+ <!-- <div class="container marketing">
 
-    <!-- Three columns of text below the carousel -->
+     Three columns of text below the carousel 
     <div class="row">
       <div class="col-lg-4">
         <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
         <h2>Heading</h2>
         <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
         <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-      </div><!-- /.col-lg-4 -->
+      </div>
       <div class="col-lg-4">
         <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
         <h2>Heading</h2>
         <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
         <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-      </div><!-- /.col-lg-4 -->
+      </div>
       <div class="col-lg-4">
         <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
         <h2>Heading</h2>
         <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
         <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-      </div><!-- /.col-lg-4 -->
-    </div><!-- /.row -->
+      </div>
+    </div>
+  -->
 
 
     <!-- START THE FEATURETTES -->
@@ -203,8 +214,8 @@
 
   <!-- FOOTER -->
   <footer class="container">
-    <p class="float-right"><a href="#">Back to top</a></p>
-    <p>&copy; 2017-2020 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    <p class="float-right"><a href="#">Voltar ao início</a></p>
+    <p>&copy; Equipe: Os moi, iFPB. &middot; <a href="#">Projeto Dweb</a> &middot; <a href="#">Gustavo Soares</a></p>
   </footer>
 </main>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

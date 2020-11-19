@@ -8,6 +8,10 @@
     top: 50%;
     left: 289%;
 }
+.navbar.custom {
+    width: 10%;  
+    margin: 0 auto;
+}
 
 /*!
  * Bootstrap v4.5.3 (https://getbootstrap.com/)
