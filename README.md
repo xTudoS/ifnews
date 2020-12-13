@@ -2,9 +2,7 @@
 
 Um agregador de notícias e editais do portal IFPB
 
-## Getting Started
-
-### Branchs
+## Branch's
 
 **master** -> Breve descrição do projeto
 
