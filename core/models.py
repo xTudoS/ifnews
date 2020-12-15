@@ -39,23 +39,3 @@ class Announcement(models.Model):
     image = models.URLField(null=True)
     def __str__(self):
         return self.title
-
-
-class EmailNewsletter(models.Model):
-    id = models.AutoField(_("id"), primary_key=True)
-    email = models.EmailField()
-    name = models.CharField(max_length=50)
-    is_active = models.BooleanField(default=True)
-
-    def __str__(self):
-        return "%s - %s" %(self.id, self.name)
-
-
-class Newsletter(models.Model):
-    id = models.AutoField(_("id"), primary_key=True)
-    sended_to = models.ManyToManyField(EmailNewsletter)
-    sended_date = models.DateTimeField(default=timezone.now)
-    content = models.TextField()
-
-    def __str__(self):
-        return str(self.id) + " - " + str(self.sended_date)
