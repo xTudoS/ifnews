@@ -21,5 +21,6 @@ from core import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", views.MyView.as_view())
+    path("", views.IndexView.as_view()),
+    path("editais/", views.AnnouncementView.as_view()),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

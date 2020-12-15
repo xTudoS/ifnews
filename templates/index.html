@@ -1,176 +1,103 @@
 {% load static %}
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Jekyll v4.1.1">
-    <title>IFnews</title>
-
-    <link rel="canonical" href="{% static "index/css/carousel.css" %}">
-
-
-    <!-- Bootstrap core CSS -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IFNews</title>
     <link href="{% static "index/css/style.css" %}" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
+        @font-face {
+            font-family: "Autography";
+            src: url("{% static "index/fonts/Autography.otf" %}");
         }
-      }
+
+        @font-face {
+            font-family: "Bebas";
+            src: url("{% static "index/fonts/Bebas-Regular.otf" %}");
+        }
     </style>
-    <!-- Custom styles for this template -->
-  </head>
-  <body>
-    <header>
-      <nav class="navbar navbar-expand-lg fixed-top" style="background-color: black;" >
-        <a class="navbar-brand mb-2 h1" href="https://www.ifpb.edu.br/cajazeiras" target="_blank"> IFPB Cajazeiras</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link mb-2" href="/">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link " href="#">Links</a>
-            </li>
-            <li class="nav-item  dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Editais
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="https://estudante.ifpb.edu.br/processoseletivo/processo/1/" target="_blank">PSCT</a>
-                <a class="dropdown-item" href="https://enem.inep.gov.br/" target="_blank">Enem</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Algo mais se precisar</a>
-              </div>
-            </li>
-            <!-- <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Mais..</a>
-            </li> -->
-          </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Pesquise aqui!" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
-          </form>
+</head>
+<body style="background-color: #b4b4b4;">
+    <!-- Navbar -->
+    <nav style="background: #009f3c;" class="navbar navbar-light justify-content-center">
+        <!-- Name -->
+        <div style="font-family: bebas; font-size: 50px; color: #fff;">
+            IF
+            <span style="font-family: Autography; font-size: 70px;">
+                news
+            </span>
         </div>
+        <!-- End name -->
+        
       </nav>
-</header>
+    
+    <!-- End Navbar -->
 
-<main role="main">
-
-  <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <!-- Importar imagem do carrosel-->
-        <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-2" width="500" height="425" src="{% static "index/img/site.png" %}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500">
-        <!-- <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#00FF7F"/></svg> -->
-        <div class="container">
-          <div class="carousel-caption text-left">
-            <h1>O Instituto Federal de Educação, Ciência  e Tecnologia é.....</h1>
-            <p>Isso aquilo isso la acula</p>
-            <p><a class="btn btn-lg btn-primary" href="https://github.com/filipindie" role="button" target="_blank">Chega ai</a></p>
-          </div>
+    <!-- Content -->
+    <div class="row">
+        <!-- First column -->
+        <div class="firstColumn">
+            <a href="/editais" class="btn btn-outline-dark" style="font-family: Arial;">Editais</a>
+            <br>
+            <a href="/" class="btn btn-outline-dark" style="font-family: Arial; margin-top: 10px; margin-bottom: 10px;">Recentes</a>
+            <br>
+            <br>
+            <br>
+            <a href="{{ keywords.0.link }}" target="_blank" class="btn btn-dark" style="font-family: Arial; margin-top: 10px; margin-left: 10px;">{{ keywords.0.name }}</a>
+            <a href="{{ keywords.1.link }}" target="_blank" class="btn btn-dark" style="font-family: Arial; margin-top: 10px; margin-left: 10px;">{{ keywords.1.name }}</a>
+            <br>
+            <a href="{{ keywords.2.link }}" target="_blank" class="btn btn-dark" style="font-family: Arial; margin-top: 10px; margin-left: 10px;">{{ keywords.2.name }}</a>
         </div>
-      </div>
-      <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#87CEFA"/></svg>
-        <div class="container">
-          <div class="carousel-caption">
-            <h1>Outro exemplo de headline.</h1>
-            <p>Cdasdasdaaaaaaaaadasdasfas fasf asf asfasfasfafasfa.</p>
-            <p><a class="btn btn-lg btn-primary" href="#" role="button">Leia mais sobre</a></p>
-          </div>
+        <!-- End First column -->
+        <!-- Second column -->
+        <div class="secondColumn">
+            <!-- Content -->
+            {% for notice in notice_list %}
+                <div style="border: 1px solid black; margin-left: 10px;">
+                    <a href="{{ notice.link }}" style="color: black;" target="_blank"><h3>{{ notice.title }}</h6></a>
+                    <span>
+                        Publicado em: {{ notice.datetime }}
+                    </span>
+                </div>
+                <br>
+            {% endfor %}
+            <!-- End content -->
+            <br>
+            {% if notices.has_previous %}
+            <div class="btn-group mr-2" role="group" aria-label="First group">
+                <a href="?page={{ notices.previous_page_number }}"><button type="button" class="btn" style="background:#eee;"><</button></a>
+            </div>
+            {% endif %}
+            {% for i in notices.paginator.page_range %}
+            {% if i <= notices.number|add:2 and i >= notices.number|add:-2 %}
+                {% if i == notices.number %}
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                    <button type="button" class="btn btn-outline-dark">{{ i }}</button>
+                </div>
+                {% else %}
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                    <a href="?page={{ i }}"><button type="button" class="btn" style="background:#eee;">{{ i }}</button></a>
+                </div>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+
+
+        {% if notices.has_next %}
+            <div class="btn-group mr-2" role="group" aria-label="First group">
+                <a href="?page={{ notices.next_page_number }}"><button type="button" class="btn" style="background:#eee;">></button></a>
+            </div>
+        {% endif %}
         </div>
-      </div>
-      <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#EE82EE"/></svg>Conteúdo do carousel
-        <div class="container">
-          <div class="carousel-caption text-right">
-            <h1>Outro outro</h1>
-            <p>556 762 colt 556</p>
-            <p><a class="btn btn-lg btn-primary" href="#" role="button">Pesquisando</a></p>
-          </div>
-        </div>
-      </div>
+        <!-- End Second column -->
     </div>
-    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
+    <!-- End Content -->
+</body>
 
-
-   <hr class="featurette-divider">
-
-    <div class="row featurette">
-      <!--col-md: posição da imagem, order-md: posição do conteúdo-->
-      <div class="col-md-6 ">
-        <h2 class="featurette-heading">Os moi, botando em geral</h2>
-        <p class="lead">Comendo o cu de quem ta lendo!!!!</p>
-      </div>
-      <div class="col-md-5">
-        <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-2" width="500" height="425" src="{% static "index/img/rick.png" %}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500">
-        <!-- <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg> -->
-      </div>
-    </div>
-
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-      <div class="col-md-7 order-md-2">
-        <h2 class="featurette-heading">O Instituto Federal de Educação, Ciência e Tecnologia da Paraíba, campus Cajazeiras<!--<span class="text-muted">See for yourself.</span>--></h2>
-        <p class="lead">Escreva mais algumas informações</p>
-      </div>
-      <div class="col-md-5 order-md-1">
-        <a href="https://www.ifpb.edu.br/cajazeiras" target="_blank">
-          <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-2" width="500" height="425" src="{% static "index/img/site.png" %}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500">
-          </img></a>
-      </div>
-    </div>
-
-  
-    </div>
-
-    <hr class="featurette-divider">
-
-
-   </div>
-
-
-  <!-- FOOTER -->
-  <footer class="container">
-    <p class="float-right"><a href="#">Voltar ao início</a></p>
-    <p>&copy; Equipe: Os moi, iFPB. &middot; <a href="https://github.com/xTudoS/ifnews" target="_blank">Projeto Dweb</a> &middot; <a href="https://github.com/gustavo-ifpb" target="_blank">Gustavo Soares</a></p>
-  </footer>
-</main>
-<!-- Script -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-
-<script src="{% static "index/js/script.js" %}"></script>      
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 </html>

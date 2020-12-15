@@ -14,6 +14,7 @@ class PortalIFPB:
         print("update in %s" %timezone.now())
         for campus in Constants.CAMPI:
             PortalIFPB.get_lasted_announcement(campus)
+            
             notices = PortalIFPB.get_notices(campus)
             for notice in notices:
                 keywords = notice.pop("tags")
